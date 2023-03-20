@@ -228,6 +228,27 @@ impl Texture {
         );
     }
 
+
+
+    /// Draws the texture to the screen (or to a canvas, if one is enabled).
+    pub fn draw_with_params(&self, ctx: &mut Context, params: &DrawParams)
+    {
+
+        graphics::set_texture(ctx, self);
+        graphics::push_quad(
+            ctx,
+            0.0,
+            0.0,
+            self.width() as f32,
+            self.height() as f32,
+            0.0,
+            0.0,
+            1.0,
+            1.0,
+            params,
+        );
+    }
+
     /// Draws a region of the texture to the screen (or to a canvas, if one is enabled).
     pub fn draw_region<P>(&self, ctx: &mut Context, region: Rectangle, params: P)
     where
